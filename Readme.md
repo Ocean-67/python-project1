@@ -1,124 +1,145 @@
-Payslip Generator
-This Python script generates payslips for employees from an Excel file, calculates their net salary, generates PDF payslips, and sends them via email.
+# 🧾 Python Programming Assignment: Payslip Generator
 
-Requirements
-Before running the script, ensure you have the following:
+---
 
-Python 3.13+ installed.
+## 📌 **Project Overview**
+This project is a **Python-based Payslip Generator** designed to automate the creation of employee payslips in PDF format. It reads employee data from an Excel file, calculates net salaries, and generates professional payslips for each employee.
 
-Required Python packages installed:
+---
 
-pandas
+## ✨ **Features**
+- **Automated Payslip Generation**  
+  Generates PDF payslips with employee details: name, email, basic salary, allowances, deductions, and net salary.
 
-python-dotenv
+- **Customizable Design**  
+  Includes company logo, header, and footer for a professional appearance.
 
-reportlab
+- **Error Handling**  
+  Gracefully manages missing files, invalid formats, and other common issues.
 
-You can install the required packages using pip:
+- **Selective Printing**  
+  Filter and print specific employee payslips based on criteria.
 
-bash
-Copy
-Edit
-pip install pandas python-dotenv reportlab
-Google Account for sending emails (If using Gmail for SMTP).
+- **Environment Variables**  
+  Uses `.env` files to securely store email credentials.
 
-File and Folder Structure
-bash
-Copy
-Edit
-Payslip-Generator/
-│
-├── payslips_generator.py       # The main script for generating payslips and sending emails
-├── employees.xlsx              # Excel file with employee data
-├── payslips/                   # Folder where generated PDF payslips will be saved
-├── .env                        # Environment variables file (for email configuration)
-└── README.md                   # This file
-Configuration
-Create the .env File: In the project directory, create a .env file that will store sensitive email details like your email address and password.
+---
 
-Example .env file:
+## 🧰 **Requirements**
+### **Software**
+- **Python 3.7 or higher**
 
-env
-Copy
-Edit
+### **Python Libraries**
+- `pandas`
+- `reportlab`
+- `python-dotenv`
+
+### **Input File**
+- **Excel File**: `employees.xlsx` with the following columns:
+  - `name`
+  - `email`
+  - `basic_salary`
+  - `allowance`
+  - `deduction`
+
+---
+
+## ⚙️ **Setup Instructions**
+### **1. Clone the Repository**
+```bash
+git clone https://github.com/Ocean-67/payslip-generator.git
+cd payslip-generator
+```
+
+### **2. Install Required Libraries**
+```bash
+pip install -r requirements.txt
+```
+
+### **3. Configure the `.env` File**
+Create a `.env` file in the project root and add your email credentials:
+```plaintext
 EMAIL_USER=your_email@example.com
-EMAIL_PASSWORD=your_email_password
-Replace your_email@example.com with your Gmail address and your_email_password with your password (or an App Password if using 2FA).
+EMAIL_PASS=your_email_password
+```
 
-Enable "Less Secure Apps" on Gmail (for SMTP): If you are using Gmail, you need to enable access for less secure apps:
+### **4. Prepare the Excel File**
+Ensure `employees.xlsx` is in the project root and has the required columns.
 
-Go to: https://myaccount.google.com/lesssecureapps
-
-Turn on "Allow less secure apps" (only if using a non-2FA Google account).
-
-If you have two-factor authentication (2FA) enabled, you will need to use an App Password. To generate an app password:
-
-Visit: https://myaccount.google.com/apppasswords
-
-Create an app password for your script.
-
-Important: If you use a non-Google email service, check your provider's documentation for SMTP settings.
-
-How to Run the Script
-Prepare the Employee Data: Ensure the employee data is stored in the employees.xlsx file with the following columns:
-
-Employees ID
-
-Name
-
-Emails
-
-Basic Salary
-
-Allowance
-
-Deduction
-
-Example:
-
-Employees ID	Name	Emails	Basic Salary	Allowance	Deduction
-101	Jack Dolson	Reecekhalid96@gmail.com	52500	5800	2100
-102	Ceilia Rosean	kurangwareece@gmail.com	61500	7200	2500
-103	Unami Wills	kupakwashekondo96@gmail.com	57700	6300	2300
-104	Diana Price	Reecekondo96@gmail.com	63500	6800	2450
-Run the Script: Open a terminal or command prompt, navigate to the project directory, and execute the following command:
-
-bash
-Copy
-Edit
+### **5. Run the Script**
+```bash
 python payslips_generator.py
-Script Output:
+```
 
-The script will process the employee data from employees.xlsx.
+---
 
-It will calculate the net salary for each employee.
+## 🔍 **How It Works**
+1. **Reads Employee Data**  
+   The script reads employee information from `employees.xlsx`.
 
-Payslips will be generated as PDF files in the payslips/ directory.
+2. **Calculates Net Salary**  
+   Formula:  
+   ```plaintext
+   net_salary = basic_salary + allowance - deduction
+   ```
 
-Emails with the corresponding payslips will be sent to each employee.
+3. **Generates Payslips**  
+   Produces a PDF file for each employee with their personal and salary details.
 
-Example output in the terminal:
+4. **Filters Desired Payslips**  
+   Prints only the payslips listed in the `desired_payslips` list.
 
-pgsql
-Copy
-Edit
-✅ Payslip sent to Reecekhalid96@gmail.com
-✅ Payslip sent to kurangwareece@gmail.com
-✅ Payslip sent to kupakwashekondo96@gmail.com
-✅ Payslip sent to Reecekondo96@gmail.com
-✅ Payslips have been generated and emailed to all employees.
-Troubleshooting
-1. Authentication Errors:
-If you encounter an authentication error (e.g., "Username and Password not accepted"), check the following:
+---
 
-Ensure your email and password are correct in the .env file.
+## 📁 **File Structure**
+```plaintext
+📂 Python Programming Assignment - Payslip Generator
+├── payslips_generator.py    # Main script
+├── employees.xlsx           # Employee data file
+├── bfxcc_logo.png           # Company logo
+├── .env                     # Email credentials
+├── payslips/                # Generated PDF payslips
+└── README.md                # Project documentation
+```
 
-If using Gmail, ensure that "Less Secure Apps" is enabled, or use an App Password if you have 2FA enabled.
+---
 
-Check for any account security alerts on your email provider's website.
+## 🧾 **Sample Output**
+A generated payslip includes:
+- Employee Name
+- Email Address
+- Basic Salary
+- Allowances
+- Deductions
+- Net Salary
+- Company Logo, Header, and Footer
 
-2. Missing Excel File:
-Make sure the employees.xlsx file is in the same directory as the script. The script will look for this file and load the employee data.
+---
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## ⚠️ **Error Handling**
+- **Missing Files**  
+  Shows an error if `employees.xlsx` or `bfxcc_logo.png` is not found.
+
+- **Invalid Data**  
+  Checks for missing or incorrect columns in the Excel file.
+
+- **Email Configuration**  
+  Validates that email credentials are set correctly in the `.env` file.
+
+---
+
+## 🤝 **Contributing**
+Contributions are welcome!  
+Feel free to fork the repository and submit a pull request.
+
+---
+
+## 📜 **License**
+This project is licensed under the MIT License.  
+See the LICENSE file for more information.
+
+---
+
+## 📬 **Contact**
+- **Name**: BFXCC  
+- **Email**: a-z@gmail.com
